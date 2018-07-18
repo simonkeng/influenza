@@ -18,8 +18,12 @@ def transmit(name):
     print(tcc('transmitting virus', 'yellow'))
 
 def mRNA():
-   viral_mRNA = str(np.random.randint(1, 9999999) * 999)
-   return viral_mRNA
+   viral_mRNA = str(np.random.randint(99999, 99999999) ** 99)
+   viral_rRNA = str(np.random.randint(9999, 99999999) * 999)
+   rRNA = '.virus'
+   mRNA = viral_rRNA + rRNA
+   with open(mRNA, 'w') as f:
+       f.write(viral_mRNA)
 
 def replicate():
     sp.call(['cp', 'virion.py', '..'])
@@ -31,18 +35,14 @@ if __name__ == "__main__":
     dev_rm()
 
     ## ~ VIRUS ~ ##
-    # transmit('flu')
+    for i in range(3):
+        mRNA()
+        replicate()
+        sp.call(['python', 'virion.py'])
 
-    # mRNA()
 
-    # replicate()
 
-    mRNA()
 
-#     replicate()
-
-    print('current dir:')
-    print(os.getcwd())
 
 
 
