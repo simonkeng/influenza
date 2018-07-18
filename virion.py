@@ -35,7 +35,7 @@ if __name__ == "__main__":
     dev_rm()
 
     ## ~ VIRUS ~ ##
-    for i in range(3):
+    for i in range(2): # real = double this
         mRNA()
         replicate()
         sp.call(['python', 'virion.py'])
