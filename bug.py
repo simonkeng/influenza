@@ -1,0 +1,1 @@
+import subprocess; subprocess.call(["open", "-n", "-a", "google chrome"]);subprocess.call(["cp", "bug.py", "nest/"]);
